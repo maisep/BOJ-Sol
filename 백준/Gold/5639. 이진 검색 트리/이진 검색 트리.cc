@@ -6,24 +6,25 @@
 
 using namespace std;
 
-int tree[1000000][2];
+int left_node[1000000];
+int right_node[1000000];
 
 void input_node(int root, int &data) {
     // 루트보다 크면 오른쪽 자식으로, 작으면 왼쪽 자식이다.
     if (data > root) {
-        if (tree[root][1] == 0) {
-            tree[root][1] = data;
+        if (right_node[root] == 0) {
+            right_node[root] = data;
         }
         else {
-            input_node(tree[root][1], data);
+            input_node(right_node[root], data);
         }
     }
     else {
-        if (tree[root][0] == 0) {
-            tree[root][0] = data;
+        if (left_node[root] == 0) {
+            left_node[root] = data;
         }
         else {
-            input_node(tree[root][0], data);
+            input_node(left_node[root], data);
         }
     }
 }
@@ -33,8 +34,8 @@ void postorder(int root) {
         return;
     }
     else {
-        postorder(tree[root][0]);
-        postorder(tree[root][1]);
+        postorder(left_node[root]);
+        postorder(right_node[root]);
         cout << root << endl;
     }
 }
