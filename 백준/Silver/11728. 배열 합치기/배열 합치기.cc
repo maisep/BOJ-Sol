@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <queue>
 
 #define endl '\n'
 
@@ -14,16 +14,16 @@ int main() {
     cin >> N >> M;
     int NM = N + M;
 
-    vector<int> A;
+    priority_queue<int> PQ;
     int a;
     for (int i = 0; i < NM; i++) {
         cin >> a;
-        A.push_back(a);
+        PQ.push(-a);
     }
-    sort(A.begin(), A.end());
 
-    for (int i = 0; i < NM; i++) {
-        cout << A[i] << " ";
+    while (!PQ.empty()) {
+        cout << -PQ.top() << " ";
+        PQ.pop();
     }
 
     return 0;
